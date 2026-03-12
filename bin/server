@@ -1,0 +1,12 @@
+#!/bin/bash
+
+python -m http.server 8888 &
+PID=$!
+echo $PID > .server
+
+cleanup() { 
+    rm .server 
+}
+trap cleanup EXIT
+
+wait $PID
