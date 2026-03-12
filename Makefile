@@ -11,8 +11,8 @@ tail:
 	tail -f .server.logs
 
 kill:
-	-kill $$(cat .server)
-	-rm .server
+	-kill -f $$(cat .server)
+	-rm -f .server
 
 clean: kill
-	-rm .server.logs
+	-rm -f .server.logs
