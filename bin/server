@@ -1,11 +1,12 @@
 #!/bin/bash
 
-python -m http.server 8888 >.server.logs 2>&1 &
+cd test
+flask run > ../.server.logs 2>&1 &
 PID=$!
-echo $PID > .server
+echo $PID > ../.server
 
 cleanup() { 
-    rm .server 
+    rm ../.server 
 }
 trap cleanup EXIT
 
