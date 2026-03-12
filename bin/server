@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python -m http.server 8888 &
+python -m http.server 8888 >.server.logs 2>&1 &
 PID=$!
 echo $PID > .server
 
