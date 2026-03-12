@@ -1,3 +1,7 @@
+# Makefile targets
+.server
+.server.logs
+
 # aspell files
 *.bak
 
