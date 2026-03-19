@@ -137,8 +137,8 @@
 [role="tooltip"] {
   visibility: hidden;
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 4rem;
   background: black;
   color: white;
   padding: 0.5rem;
