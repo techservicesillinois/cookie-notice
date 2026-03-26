@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% include "partials/ila-cookie-banner-content.part.html" %}
+{% block scriptlinks %}
+    <script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
+    <!-- Locally serve all necessary CSS: -->
+    <link rel='stylesheet' href='css/ila-cookie-banner.css'/>
+    <link rel='stylesheet' href='css/ila-slideover.css'/>
+    <link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
+{% endblock %}
+{% block pagelinks %}
+    <p><a href="/">Illinois example here.</a></p>
+    <p><a href="/uic">UIC example here.</a></p>
+    <p><a href="/uis">UIS example here.</a></p>
+{% endblock %}
