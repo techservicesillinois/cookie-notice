@@ -1,12 +1,12 @@
 #!/bin/bash
 
 cd test
-flask run > ../.server.logs 2>&1 &
+flask --debug run > ../.server.logs 2>&1 &
 PID=$!
 echo $PID > ../.server
 
-cleanup() { 
-    rm ../.server 
+cleanup() {
+    rm ../.server
 }
 trap cleanup EXIT
 
