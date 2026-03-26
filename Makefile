@@ -22,3 +22,4 @@ venv: .venv
 
 clean: kill
 	-rm -f .server.logs
+	-rm -rf .venv
