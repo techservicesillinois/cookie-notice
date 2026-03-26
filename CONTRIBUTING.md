@@ -10,7 +10,7 @@
     make server
     ```
 
-    Once this mini web server is running, the pages can be tested by visiting `http://localhost:8888`.
+    Once this mini web server is running, the pages can be tested by visiting `http://127.0.0.1:5000`.
 
     > Standard disclaimer: the Python mini web server is not acceptable for any production hosting.
 
