@@ -118,6 +118,7 @@
     transition: background-color 0.3s;
     background-color: var(--ila-cookieb-accent);
     color: var(--ila-cookieb-hover-button-font);
+    content: "Accept all and close notice";
 }
 
 .ila-cookieb__button:hover,
@@ -130,6 +131,33 @@
 .ila-cookieb__close-icon {
     padding: var(--ila-cookieb-padding-y) var(--ila-cookieb-padding-x);
     font-size: 25px;
+
+}
+
+[role="tooltip"] {
+  visibility: hidden;
+  position: absolute;
+  top: 1rem;
+  right: 4rem;
+  background: black;
+  color: white;
+  padding: 0.5rem;
+  border-color: #ffffff;
+  border-style: solid;
+  border-radius: 0.25rem;
+  /* Give some time before hiding so mouse can exit the input
+  and enter the tooltip */
+  transition: visibility 0.3s;
+}
+[aria-describedby]:hover,
+[aria-describedby]:focus {
+  position: absolute;
+}
+[aria-describedby]:hover + [role="tooltip"],
+[aria-describedby]:focus + [role="tooltip"],
+[role="tooltip"]:hover,
+[role="tooltip"]:focus {
+  visibility: visible;
 }
 
 .ila-cookieb.ila-cookieb--closed {

@@ -7,13 +7,14 @@
     <div class="cookieb-holder-inner">
         <div id="ilaCookieBOne" class="ila-cookieb ila-cookieb--closed">
             <div class="ila-cookieb__cookieb">
-                <button id="ilaCookieBXButton" type="button"
-                class="ila-cookieb__close-button" aria-label="close cookie notice"
-                data-cookie-action="close-banner">
+                <button id="ilaCookieBXButton" aria-describedby="acceptall" type="button"
+                class="ila-cookieb__close-button" aria-label="accept all and close"
+                data-cookie-action="close-banner-granted">
                     <div class="ila-cookieb__close-icon" aria-hidden="true">
                         <strong>X</strong>
                     </div>
                 </button>
+                <div id="acceptall" role="tooltip">Accept all and close notice</div>
                 <div class="ila-cookieb__heading">
                     <h2 id="ilaCookieNoticeHeader" class="ila-cookieb__h3">Cookie Notice</h2>
                 </div>
@@ -35,8 +36,12 @@
                             About Cookies
                         </button>
                         <button id="ilaCookieCloseButton" type="button" class="ila-cookieb__button"
-                        aria-label="close cookie notice" data-cookie-action="close-banner">
-                            Close Cookie Notice
+                        aria-label="close cookie notice" data-cookie-action="close-banner-granted">
+                            Accept All Cookies
+                        </button>
+                        <button id="ilaCookieCloseButton" type="button" class="ila-cookieb__button"
+                        aria-label="close cookie notice" data-cookie-action="close-banner-denied">
+                            Reject Non-Essential Cookies
                         </button>
                     </div>
                 </div>

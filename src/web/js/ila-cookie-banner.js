@@ -40,8 +40,11 @@ async function openCookieB(cookiebId) {
 
 }
 
-function closeCookieB(cookiebId) {
+function closeCookieB(cookiebId, decision = "denied") {
     let cookieb = document.getElementById(cookiebId);
+    let data_gtag = this_script.getAttribute("data-gtag");
+
+    cookieDecision(decision, data_gtag);
 
     // Only move forward if the Cookie Banner is Open
     if (cookieb.classList.contains('ila-cookieb--open')) {
@@ -63,6 +66,17 @@ function closeCookieB(cookiebId) {
         document.body.setAttribute('tabindex', '-1'); // Focusable but outside tab order
         document.body.focus();
 
+    }
+}
+
+function cookieDecision(decision, gtagId) {
+    if (gtagId) {
+        gtag('consent', 'update', {
+            'ad_user_data': decision,
+            'ad_personalization': decision,
+            'ad_storage': decision,
+            'analytics_storage': decision
+        });
     }
 }
 
@@ -176,9 +190,14 @@ async function addCookieBanner() {
 
     document.querySelectorAll("[data-cookie-action]").forEach(button => {
         switch (button.getAttribute("data-cookie-action")) {
-            case "close-banner":
+            case "close-banner-denied":
                 button.addEventListener("click", function() {
-                    closeCookieB('ilaCookieBOne');
+                    closeCookieB('ilaCookieBOne', 'denied');
+                });
+                break;
+            case "close-banner-granted":
+                button.addEventListener("click", function() {
+                    closeCookieB('ilaCookieBOne', 'granted');
                 });
                 break;
             case "open-about":
@@ -212,7 +231,7 @@ async function addCookieBanner() {
     // Dismiss the Cookie banner when `Escape` is pressed
     document.addEventListener("keydown", function(event) {
         if (event.key === "Escape") {
-            closeCookieB('ilaCookieBOne');
+            closeCookieB('ilaCookieBOne', 'granted');
         }
     });
     createCookieNoticeFocusCycle();
