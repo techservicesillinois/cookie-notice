@@ -30,3 +30,8 @@ def stupid_hack_uis():
 @app.route("/csp")
 def stupid_hack_csp():
     return render_template("csp.html")
+
+
+@app.route("/gtag")
+def stupid_hack_gtag():
+    return render_template("gtag.html")
