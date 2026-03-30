@@ -5,11 +5,20 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
   gtag('js', new Date());
 
   gtag('config', 'G-40F70DPNT5');
+
 </script>
-<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
+<script data-cookie-fetch="no" data-gtag="G-40F70DPNT5" src="js/ila-cookie-banner.js"></script>
 <!-- Locally serve all necessary CSS: -->
 <link rel='stylesheet' href='css/ila-cookie-banner.css'/>
 <link rel='stylesheet' href='css/ila-slideover.css'/>
