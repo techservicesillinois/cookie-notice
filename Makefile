@@ -12,7 +12,6 @@ tail:
 
 kill:
 	-kill -9 $$(cat .server)
-	-rm -f .server
 
 venv: .venv
 .venv: requirements-test.in
