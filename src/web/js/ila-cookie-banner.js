@@ -69,14 +69,10 @@ function closeCookieB(cookiebId, decision = "denied") {
     }
 }
 
-function cookieDecision(decision, gtagId) {
-    if (gtagId) {
-        gtag('consent', 'update', {
-            'ad_user_data': decision,
-            'ad_personalization': decision,
-            'ad_storage': decision,
-            'analytics_storage': decision
-        });
+function cookieDecision(decision) {
+    
+    if (decision=='accepted') {
+       user_accepted_all()
     }
 }
 

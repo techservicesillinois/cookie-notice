@@ -1,22 +1,23 @@
 {% extends "layout.html" %}
 {% block scriptlinks %}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-40F70DPNT5"></script>
+
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function user_accepted_all (){
+    /*IMPORTANT: DO NOT LOAD ANY TRACKING OUTSIDE THIS FUNCTION
+    this function will be called if the user accept tracking*/
+    var gtagId = 'G-40F70DPNT5'
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
+    script.async = true;
+    document.head.appendChild(script);
 
-  gtag('consent', 'default', {
-    ad_storage: 'denied',
-    analytics_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied'
-  });
+    gtag('js', new Date());
+    gtag('config', gtagId);
+}
 
-  gtag('js', new Date());
 
-  gtag('config', 'G-40F70DPNT5');
-
+ 
 </script>
 <script data-cookie-fetch="no" data-gtag="G-40F70DPNT5" src="js/ila-cookie-banner.js"></script>
 <!-- Locally serve all necessary CSS: -->
