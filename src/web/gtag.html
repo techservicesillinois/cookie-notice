@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block scriptlinks %}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-40F70DPNT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-40F70DPNT5');
+
+</script>
+<script data-cookie-fetch="no" data-gtag="G-40F70DPNT5" src="js/ila-cookie-banner.js"></script>
+<!-- Locally serve all necessary CSS: -->
+<link rel='stylesheet' href='css/ila-cookie-banner.css'/>
+<link rel='stylesheet' href='css/ila-slideover.css'/>
+<link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
+{% endblock %}
+{% block pagelinks %}
+<p><a href="/">Illinois example here.</a></p>
+<p><a href="/uic">UIC example here.</a></p>
+<p><a href="/uis">UIS example here.</a></p>
+{% endblock %}
+{% block serversideincludes %}
+    {% include "partials/ila-cookie-banner-content.part.html" %}
+{% endblock %}
