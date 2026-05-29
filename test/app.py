@@ -10,6 +10,8 @@ app = Flask(
     static_url_path="/",
     static_folder=str(WEB_PATH),
 )
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 
 @app.route("/")
