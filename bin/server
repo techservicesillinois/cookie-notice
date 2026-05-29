@@ -1,7 +1,19 @@
 #!/bin/bash
+set -euo pipefail
 
 cd test
-../.venv/bin/flask --debug run > ../.server.logs 2>&1 &
+
+EXTRA_FILES="$(
+  find ../src/web -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print | tr '\n' ':'
+)"
+EXTRA_FILES="${EXTRA_FILES%:}"
+
+if [ -n "$EXTRA_FILES" ]; then
+  ../.venv/bin/flask --app app run --debug --extra-files "$EXTRA_FILES" > ../.server.logs 2>&1 &
+else
+  ../.venv/bin/flask --app app run --debug > ../.server.logs 2>&1 &
+fi
+
 PID=$!
 echo $PID > ../.server
 
