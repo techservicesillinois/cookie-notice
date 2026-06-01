@@ -123,7 +123,7 @@
             <div>
                 <h2>Behavior</h2>
                 <p>
-                    Places a notification at the bottom of the screen
+                    The Cookie notice is presented after loading this page.
                 </p>
             </div>
 
@@ -136,12 +136,6 @@
             </div>
 
             <div>
-                <h2>Example</h2>
-                <p>
-                    The Cookie Banner is presented after loading this page
-                </p>
-                {% block pagelinks %}
-                {% endblock %}
                 <button type="button" id="ot-sdk-btn" class="ot-sdk-show-settings il-button">
                     About Cookies
                 </button>
@@ -155,13 +149,25 @@
                     Re-Show Cookie Notice
                 </button>
             </div>
-
             <div>
-                <h2>Link</h2>
+						<h2>References</h2>
                 <p>
                     <a href="https://github.com/app-illinois/Design-Resources/tree/develop/applications/ila-cookie-banner"
                         target="_blank">Link to this standard in GitHub</a>
                 </p>
+            </div>
+            <div>
+                <h2>Examples</h2>
+                {% block pagelinks %}
+								<ul>
+									<li><a href="/csp">Example for use with Content Security Policy Headers</a></li>
+									<li><a href="/gtag">Example for use with Analytics</a></li>
+									<li><a href="/">Example with Illinois colors</a></li>
+									<li><a href="/uic">Example with UIS colors</a></li>
+									<li><a href="/uic">Example with UIC colors</a></li>
+								</ul>
+                {% endblock %}
+
             </div>
 
         </div><!-- closes page wrapper -->
