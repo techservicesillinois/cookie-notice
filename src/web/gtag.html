@@ -1,21 +1,31 @@
 {% extends "layout.html" %}
 {% block scriptlinks %}
 
-<!-- TODO: This script tag is not being loaded. It may be a templating issue. -->
 <script>
-  async function user_accepted_all (){
-    /*IMPORTANT: DO NOT LOAD ANY TRACKING OUTSIDE THIS FUNCTION
-    this function will be called if the user accept tracking*/
-    var gtagId = 'G-40F70DPNT5';
-    const script = document.createElement('script');
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
-    script.async = true;
-    await document.head.appendChild(script);
+  async function user_accepted_all() {
+    var gtagId = "G-40F70DPNT5";
 
-    gtag('js', new Date());
-    gtag('config', gtagId);
+    // Define queue + shim before loading GA
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+
+    // Wait for external script to finish loading
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + gtagId;
+      s.async = true;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+
+    gtag("js", new Date());
+    gtag("config", gtagId);
   }
 </script>
+
+
+
 <script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
 <!-- Locally serve all necessary CSS: -->
 <link rel='stylesheet' href='css/ila-cookie-banner.css'/>
