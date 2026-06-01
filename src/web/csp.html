@@ -1,15 +1,13 @@
 {% extends "layout.html" %}
-{% block scriptlinks %}
-<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
-<!-- Locally serve all necessary CSS: -->
-<link rel='stylesheet' href='css/ila-cookie-banner.css'/>
-<link rel='stylesheet' href='css/ila-slideover.css'/>
-<link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
+{% block title %}
+	<h1>Content Security Policy Demo - Illinois Cookie Banner</h1>
 {% endblock %}
-{% block pagelinks %}
-<p><a href="/">Illinois example here.</a></p>
-<p><a href="/uic">UIC example here.</a></p>
-<p><a href="/uis">UIS example here.</a></p>
+{% block scriptlinks %}
+	<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
+	<!-- Locally serve all necessary CSS: -->
+	<link rel='stylesheet' href='css/ila-cookie-banner.css'/>
+	<link rel='stylesheet' href='css/ila-slideover.css'/>
+	<link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
 {% endblock %}
 {% block serversideincludes %}
     {% include "partials/ila-cookie-banner-content.part.html" %}

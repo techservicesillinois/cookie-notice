@@ -118,7 +118,7 @@
     transition: background-color 0.3s;
     background-color: var(--ila-cookieb-accent);
     color: var(--ila-cookieb-hover-button-font);
-    content: "Accept all and close notice";
+    content: "Accept essential and close notice";
 }
 
 .ila-cookieb__button:hover,
