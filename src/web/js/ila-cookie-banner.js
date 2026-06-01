@@ -8,7 +8,7 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
 
 var this_script = document.currentScript; // Must run before any function calls
 
-async function check_do_not_track() {
+function check_do_not_track() {
 	// check whether the browser support Do not track
 	if (navigator.doNotTrack || window.doNotTrack || navigator.globalPrivacyControl) {
 		// if it supports
@@ -21,12 +21,15 @@ async function check_do_not_track() {
 		) {
 			// the options is enabled
 			console.log("Obeying browser 'Do not track' signal");
+			return true;
 		} else {
 			// the option is not enabled
 			console.log("Do not track checked, and not found");
+			return false;
 		}
 	} else {
 		console.log("No recognized 'do not track' found");
+		return false;
 	}
 }
 
@@ -35,7 +38,13 @@ async function openCookieB(cookiebId) {
     let skip = await getDismissCookieNotice();
     if(skip) { return; }
 
-		check_do_not_track();
+		if (check_do_not_track() === true) {
+			/* If sent 'Do Not Track', then disable 'Accept All', and show explanation. */
+			let acceptButton = document.getElementById('ilaCookieAcceptButton');
+			acceptButton.disabled = true;
+			let doNotTrackText = document.getElementById('ilaCookieDoNotTrackText');
+			doNotTrackText.hidden = false;
+		}
 
     let cookieb = document.getElementById(cookiebId);
     cookieb.classList.remove('ila-cookieb--closed');
@@ -270,7 +279,7 @@ function createCookieNoticeFocusCycle() {
             e.preventDefault();
         }});
 
-    last = document.getElementById("ilaCookieCloseButton");
+    last = document.getElementById("ilaCookieRejectButton");
     last.addEventListener('keydown', function(e){
         if (e.keyCode===9 && !e.shiftKey) {
             first.focus();
