@@ -1,39 +1,35 @@
 {% extends "layout.html" %}
 {% block title %}
-<h1>Analytics Demo - Illinois Cookie Banner</h1>
+	<h1>Analytics Demo - Illinois Cookie Banner</h1>
 {% endblock %}
 {% block scriptlinks %}
+	<script>
+		async function user_accepted_all() {
+			var gtagId = "G-40F70DPNT5";
 
-<script>
-  async function user_accepted_all() {
-    var gtagId = "G-40F70DPNT5";
+			// Define queue + shim before loading GA
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = window.gtag || function () { dataLayer.push(arguments); };
 
-    // Define queue + shim before loading GA
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+			// Wait for external script to finish loading
+			await new Promise((resolve, reject) => {
+				const s = document.createElement("script");
+				s.src = "https://www.googletagmanager.com/gtag/js?id=" + gtagId;
+				s.async = true;
+				s.onload = resolve;
+				s.onerror = reject;
+				document.head.appendChild(s);
+			});
 
-    // Wait for external script to finish loading
-    await new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.src = "https://www.googletagmanager.com/gtag/js?id=" + gtagId;
-      s.async = true;
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-
-    gtag("js", new Date());
-    gtag("config", gtagId);
-  }
-</script>
-
-
-
-<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
-<!-- Locally serve all necessary CSS: -->
-<link rel='stylesheet' href='css/ila-cookie-banner.css'/>
-<link rel='stylesheet' href='css/ila-slideover.css'/>
-<link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
+			gtag("js", new Date());
+			gtag("config", gtagId);
+		}
+	</script>
+	<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
+	<!-- Locally serve all necessary CSS: -->
+	<link rel='stylesheet' href='css/ila-cookie-banner.css'/>
+	<link rel='stylesheet' href='css/ila-slideover.css'/>
+	<link rel='stylesheet' href='css/ila-cookie-uiuc-colors.css'/>
 {% endblock %}
 {% block serversideincludes %}
     {% include "partials/ila-cookie-banner-content.part.html" %}
