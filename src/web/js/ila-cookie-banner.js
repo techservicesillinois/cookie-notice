@@ -42,7 +42,6 @@ async function openCookieB(cookiebId) {
 
 function closeCookieB(cookiebId, decision = "denied") {
     let cookieb = document.getElementById(cookiebId);
-    // let data_gtag = this_script.getAttribute("data-gtag");
 
     cookieDecision(decision);
 
@@ -70,7 +69,6 @@ function closeCookieB(cookiebId, decision = "denied") {
 }
 
 function cookieDecision(decision) {
-	  debugger;
     if (decision=='granted') {
 			if(typeof user_accepted_all === "function") {
 			 user_accepted_all()
