@@ -3,20 +3,20 @@
 
 <!-- TODO: This script tag is not being loaded. It may be a templating issue. -->
 <script>
-  function user_accepted_all (){
+  async function user_accepted_all (){
     /*IMPORTANT: DO NOT LOAD ANY TRACKING OUTSIDE THIS FUNCTION
     this function will be called if the user accept tracking*/
-    var gtagId = 'G-40F70DPNT5'
+    var gtagId = 'G-40F70DPNT5';
     const script = document.createElement('script');
     script.src = `https://www.googletagmanager.com/gtag/js?id=${gtagId}`;
     script.async = true;
-    document.head.appendChild(script);
+    await document.head.appendChild(script);
 
     gtag('js', new Date());
     gtag('config', gtagId);
   }
 </script>
-<script data-cookie-fetch="no" data-gtag="G-40F70DPNT5" src="js/ila-cookie-banner.js"></script>
+<script data-cookie-fetch="no" src="js/ila-cookie-banner.js"></script>
 <!-- Locally serve all necessary CSS: -->
 <link rel='stylesheet' href='css/ila-cookie-banner.css'/>
 <link rel='stylesheet' href='css/ila-slideover.css'/>

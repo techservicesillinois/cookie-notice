@@ -42,7 +42,7 @@ async function openCookieB(cookiebId) {
 
 function closeCookieB(cookiebId, decision = "denied") {
     let cookieb = document.getElementById(cookiebId);
-    let data_gtag = this_script.getAttribute("data-gtag");
+    // let data_gtag = this_script.getAttribute("data-gtag");
 
     cookieDecision(decision);
 
