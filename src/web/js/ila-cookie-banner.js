@@ -70,7 +70,7 @@ function closeCookieB(cookiebId, decision = "denied") {
 }
 
 function cookieDecision(decision) {
-    if (decision=='accepted') {
+    if (decision=='granted') {
        user_accepted_all()
     }
 }
