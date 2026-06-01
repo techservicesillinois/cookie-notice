@@ -8,10 +8,34 @@ if (window.location.hostname === 'localhost' || window.location.hostname === '12
 
 var this_script = document.currentScript; // Must run before any function calls
 
+async function check_do_not_track() {
+	// check whether the browser support Do not track
+	if (navigator.doNotTrack || window.doNotTrack || navigator.globalPrivacyControl) {
+		// if it supports
+		// then check for the doNotTrack property in each known case
+		if (
+			window.doNotTrack === "1" ||
+			navigator.doNotTrack === "1" ||
+			navigator.doNotTrack === "yes" || 
+			navigator.globalPrivacyControl === true
+		) {
+			// the options is enabled
+			console.log("Obeying browser 'Do not track' signal");
+		} else {
+			// the option is not enabled
+			console.log("Do not track checked, and not found");
+		}
+	} else {
+		console.log("No recognized 'do not track' found");
+	}
+}
+
 async function openCookieB(cookiebId) {
     // Do not show if our 'dismiss' cookie is set
     let skip = await getDismissCookieNotice();
     if(skip) { return; }
+
+		check_do_not_track();
 
     let cookieb = document.getElementById(cookiebId);
     cookieb.classList.remove('ila-cookieb--closed');
