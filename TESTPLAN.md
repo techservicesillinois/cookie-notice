@@ -15,6 +15,7 @@ Deliverables:
 [2]: https://github.com/techservicesillinois/cookie-notice/issues
 
 ## Shared Steps
+
 Some steps are repeated often, and documented here for re-use.
 
 ### Shared Step - Open the Cookie Notice
@@ -23,6 +24,7 @@ Some steps are repeated often, and documented here for re-use.
 - If the cookie notice is not visible, click 'Re-Show Cookie Notice'
 
 ## Test Information Slide-out
+
 Objective: Verify that the information slide-out appears and all content can be reached.
 - Open the Cookie Notice (see above)
 - Click on 'About Cookies'
@@ -50,11 +52,52 @@ Objective: Verify ways that the notice can be dismissed.
 - Verify that the cookie notice disappears.
 - In the developer tools, verify that a cookie has been added with name 'cookie_notice" and value "hide".
 
-## Test Keyboard Navigation
+## Test Keyboard Navigation in the Cookie Notice
 Objective: Verify that all notice functions are keyboard accessible
-TODO
+- Open the Cookie Notice (see above)
+- Press 'Tab' to navigate. The expected order of items is:
+    - The 'X' in the upper-right corner.
+    - The 'University of Illinois System Cookie Policy' link
+    - The 'About Cookies' button
+    - The 'Accept All Cookies' button
+    - The 'Reject Non-Essential Cookies' button
+- Press 'Shift+Tab' to navigate the list above in reverse order.
+
+> If the browser sent a 'Do Not Track' signal, navigation should skip the disabled 'Accept All Cookies' button
+
+## Test Keyboard Navigation in the Information Slide out
+Objective: Verify that all additional information is keyboard accessible
+- Open the Cookie Notice (see above)
+- Navigate to 'About Cookies' and press 'Enter' to show the cookie information slide-out.
+- Navigate with the keyboard to each element:
+    - The 'University of Illinois System Cookie Policy' link
+    - Verify that each category of cookie can be selected by keyboard, and the information can be toggled by pressing 'Enter'
+        - Strictly Necessary Cookies
+        - Performance Cookies
+        - Functional Cookies
+        - Targeting Cookies
+    - The 'Close' button
+- Verify that pressing 'Enter' on the 'Close' button closes the cookie information slide-out.
+- Verify that focus returned to the cookie notice.
+
+## Test Keyboard Navigation Looping
+
+Objective: Verify that Keyboard Navigation stays within the Cookie Notice
+- Open the Cookie Notice (see above)
+- Verify that keyboard navigation stays within the notice, until dismissed.
+    - With 'Reject Non-Essential Cookies' selected, press 'Tab' to navigate back to the 'X' in the upper right corner of the notice.
+    - With the 'X' selected, hit 'Shift+Tab' to navigate back to 'Reject Non-Essential Cookies'
+
+
+## Test Keyboard Navigation after Closing the Notice
+
+Objective: Verify that Keyboard Navigation continues to function after closing the cookie notice
+- Open the Cookie Notice (see above)
+- Close the Cookie Notice
+- use the 'Tab' and 'Shift+Tab' keys to verify that the keyboard functions to navigate the page after dismissing the Cookie notice.
 
 ## Verify Accessible Landmarks
+
 Objective: Verify that expected ARIA landmarks are present and correct
 TODO
 
