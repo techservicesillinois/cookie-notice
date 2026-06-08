@@ -4,7 +4,7 @@ Test Schedule: Before each release.
 Test Strategy: Manual Tests
 Resources:
     - [Demo Site on GitHub Pages][1]
-Risks: The Illinois Cookie Notice runs on every campus web site.
+Risks: The Illinois Cookie Notice runs on every sites across the University of Illinois system, including Illinois, University of Illinois at Chicago, and University of Illinois at Springfield.
     - Accessibility errors may harm campus users on any affected sites.
     - JavaScript errors may cause other scripts to fail.
     - Color mistakes are unattractive, erode our shared campus brand, and may cause accessibility failures through insufficient color contrast.
