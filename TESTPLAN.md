@@ -112,7 +112,9 @@ TODO
 ## Verify Brand Colors for each Variation
 
 Objective: Verify that the notice can be loaded with each set of expected brand compliant accessible colors - Illinois, UIC, and UIS
-TODO
+- Visit https://app-illinois.github.io/Design-Resources/Cookie-Banner.html
+- In the `Example` Section of the page, choose the alternate variation to test
+- If the Cookie Notice is not visible, click 'Re-Show Cookie Notice' to view the chosen alternate variation 
 
 ## Verify Analytics
 
