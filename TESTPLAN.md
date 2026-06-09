@@ -23,8 +23,8 @@ Deliverables:
 
 Some steps are repeated often, and documented here for re-use.
 
-Shared steps were written for Firefox in mind.
-Steps may vary slightly in different browsers.
+> Shared steps were written for Firefox in mind.
+> Steps may vary slightly in different browsers.
 
 ### Shared Step - Open the Cookie Notice
 
