@@ -1,14 +1,18 @@
+# Illinois Cookie Notice Test Plan
+
 Project: Illinois Cookie Notice
 
-Test Objectives: Verify core funtionality, accessibility, and branding.
+Test Objectives: Verify core funtionality, accessibility, and branding
 
-Test Schedule: Before each release.
+Test Schedule: Before each release
 
 Test Strategy: Manual Tests
 
 Resources:
 - [Demo Site on GitHub Pages][1]
-Risks: The Illinois Cookie Notice runs on every campus web site.
+
+Risks: 
+- The Illinois Cookie Notice runs on every campus web site.
 - Accessibility errors may harm campus users on any affected sites.
 - JavaScript errors may cause other scripts to fail.
 - Color mistakes are unattractive, erode our shared campus brand, and may cause accessibility failures through insufficient color contrast.
@@ -21,9 +25,9 @@ Deliverables:
 
 ## Shared Steps
 
-Some steps are repeated often, and documented here for re-use.
+Some testing steps are repeated often, and documented here for re-use.
 
-> Shared steps were written for Firefox in mind.
+> Shared steps were written with Firefox in mind.
 > Steps may vary slightly in different browsers.
 
 ### Shared Step - Open the Cookie Notice
