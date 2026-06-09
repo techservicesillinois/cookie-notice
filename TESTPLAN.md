@@ -43,10 +43,10 @@ Some testing steps are repeated often, and documented here for re-use.
 ### Shared Step - Enable or Disable sending a 'Do Not Track' signal
 
 > Support and how to configure 'Do Not Track' varies by web browser.
-> These steps work for Firefox
+> These steps work for Firefox.
 
-- Open Firefox to 'about:settings#privacy'
-- To send 'Do Not Track', check the box next to 'Tell websites not to sell or share my data'
+- Open Firefox and navigate to 'about:settings#privacy'
+- To send 'Do Not Track', *check* the box next to 'Tell websites not to sell or share my data'
 - To stop sending 'Do Not Track', *uncheck* the box next to 'Tell websites not to sell or share my data'
 
 > Tip: When testing for successful analytics, be sure to disable both 'Do Not Track' and any ad-blocking plugins (such as uBlock), or the analytics may not load.
@@ -55,13 +55,28 @@ Some testing steps are repeated often, and documented here for re-use.
 
 - Open the Browser Developer Tools (see above)
 - Open 'Storage/Cookies'
-- Press the icon that looks like a Trash Can
+- Click trash can icon to delete all cookies
 
-## Test Information Slide-out
+## Test the 'About Cookies' Slide-Out from the Cookie Notice
 
-Objective: Verify that the information slide-out appears and all content can be reached.
+Objective: Verify that the 'About Cookies' slide-out appears and all content can be reached.
 - Open the Cookie Notice (see above)
 - Click on 'About Cookies'
+- Verify that 'University of Illinois - Cookie Information' appears.
+- Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window 
+- Click on each category of cookies, to verify that additional text is displayed.
+    - Strictly Necessary Cookies
+    - Performance Cookies
+    - Functional Cookies
+    - Targeting Cookies
+- Click each category to collapse the additional information.
+- Close the information slide-out by pressing the 'Close' button.
+
+## Test the 'About Cookies' Slide-Out from the Page Footer
+
+Objective: Verify that the 'About Cookies' slide-out appears and all content can be reached.
+- Close the Cookie Notice (see above)
+- Click on 'About Cookies' in the page footer
 - Verify that 'University of Illinois - Cookie Information' appears.
 - Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window 
 - Click on each category of cookies, to verify that additional text is displayed.
