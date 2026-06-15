@@ -49,7 +49,7 @@ async function openCookieB(cookiebId) {
     let skip = await getNoticeCookie('hidden');
     if(skip) { 
 			if(no_track === true) { return; }  // Browser setting wins
-		  if(await getNoticeCookie('accept_all') === true) {  // TODO: Fix this line
+			if(await getNoticeCookie('accept_all') === true) {
 				user_accepted_all()  // Hand-off to site owner analytics code
 			}
 			return; 
@@ -110,12 +110,16 @@ function closeCookieB(cookiebId, decision = "denied") {
     }
 }
 
+function user_accepted_all(){ 
+	if (typeof enable_tracking === "function") {
+	 setNoticeCookie('accept_all');
+	 enable_tracking();
+	}
+}
+
 function cookieDecision(decision) {
     if (decision == 'granted') {
-			if (typeof user_accepted_all === "function") {
-			 setNoticeCookie('accept_all');
-			 user_accepted_all();
-			}
+			user_accepted_all();
     }
 }
 
