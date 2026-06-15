@@ -5,17 +5,17 @@ var aria = aria || {};
 
 aria.Utils = aria.Utils || {};
 
-window.openSlideover = function (dialogId, returnFocus) {
+window.openSlideover = function(dialogId, returnFocus) {
     button_to_return_focus_to = returnFocus
-    if(returnFocus) {
-        if(!returnFocus.focus) {
+    if (returnFocus) {
+        if (!returnFocus.focus) {
             button_to_return_focus_to = document.getElementById(returnFocus);
         }
     }
     new aria.Dialog(dialogId, button_to_return_focus_to);
 };
 
-window.closeSlideover = function () {
+window.closeSlideover = function() {
     aria.openedDialog.close();
 }; // end closeDialog
 
@@ -27,7 +27,7 @@ window.closeSlideover = function () {
  * @returns {boolean}
  *  true if a focusable element is found and focus is set.
  */
-aria.Utils.focusFirstDescendant = function (element) {
+aria.Utils.focusFirstDescendant = function(element) {
     for (var i = 0; i < element.childNodes.length; i++) {
         var child = element.childNodes[i];
         if (
@@ -40,18 +40,18 @@ aria.Utils.focusFirstDescendant = function (element) {
     return false;
 }; // end focusFirstDescendant
 
-aria.Utils.focusLastDescendant = function (element) {
+aria.Utils.focusLastDescendant = function(element) {
     for (var i = element.childNodes.length - 1; i >= 0; i--) {
-      var child = element.childNodes[i];
-      if (
-        aria.Utils.attemptFocus(child) ||
-        aria.Utils.focusLastDescendant(child)
-      ) {
-        return true;
-      }
+        var child = element.childNodes[i];
+        if (
+            aria.Utils.attemptFocus(child) ||
+            aria.Utils.focusLastDescendant(child)
+        ) {
+            return true;
+        }
     }
     return false;
-  }; // end focusLastDescendant
+}; // end focusLastDescendant
 
 /**
  * @description Set Attempt to set focus on the current node.
@@ -60,7 +60,7 @@ aria.Utils.focusLastDescendant = function (element) {
  * @returns {boolean}
  *  true if element is focused.
  */
-aria.Utils.attemptFocus = function (element) {
+aria.Utils.attemptFocus = function(element) {
     if (!aria.Utils.isFocusable(element)) {
         // console.debug(
         //     'Attempted to focus on an element that is not focusable.',
@@ -81,7 +81,7 @@ aria.Utils.attemptFocus = function (element) {
     return document.activeElement === element;
 }; // end attemptFocus
 
-aria.handleEscape = function (event) {
+aria.handleEscape = function(event) {
     var key = event.which || event.keyCode;
 
     if (key === aria.KeyCode.ESC && aria.openedDialog) {
@@ -101,7 +101,7 @@ document.addEventListener('keyup', aria.handleEscape);
  * @param dialogId
  *          The ID of the element serving as the dialog container.
  */
-aria.Dialog = function (dialogId, returnFocus) {
+aria.Dialog = function(dialogId, returnFocus) {
     this.dialogNode = document.getElementById(dialogId);
     if (this.dialogNode === null) {
         throw new Error('No element found with id="' + dialogId + '".');
@@ -111,8 +111,8 @@ aria.Dialog = function (dialogId, returnFocus) {
     var isDialog = (this.dialogNode.getAttribute('role') || '')
         .trim()
         .split(/\s+/g)
-        .some(function (token) {
-            return validRoles.some(function (role) {
+        .some(function(token) {
+            return validRoles.some(function(role) {
                 return token === role;
             });
         });
@@ -145,7 +145,9 @@ aria.Dialog = function (dialogId, returnFocus) {
     // (Preferred pattern because this is a modal alert)
     let slide_div = document.getElementById(dialogId);
     slide_div.setAttribute('tabindex', '-1'); // Focusable, but outside tab order
-    setTimeout(function(){    slide_div.focus();   },500);
+    setTimeout(function() {
+        slide_div.focus();
+    }, 500);
 
     this.addListeners();
     aria.openedDialog = this;
@@ -161,7 +163,7 @@ aria.Dialog = function (dialogId, returnFocus) {
  *  removes listeners of the top dialog,
  *  restore listeners of a parent dialog if one was open under the one that just closed
  */
-aria.Dialog.prototype.close = function () {
+aria.Dialog.prototype.close = function() {
     aria.openedDialog = null;
     this.removeListeners();
     aria.Utils.remove(this.preNode);
@@ -174,15 +176,15 @@ aria.Dialog.prototype.close = function () {
     this.returnFocus.focus();
 }; // end close
 
-aria.Dialog.prototype.addListeners = function () {
+aria.Dialog.prototype.addListeners = function() {
     document.addEventListener('focus', this.trapFocus, true);
 }; // end addListeners
 
-aria.Dialog.prototype.removeListeners = function () {
+aria.Dialog.prototype.removeListeners = function() {
     document.removeEventListener('focus', this.trapFocus, true);
 }; // end removeListeners
 
-aria.Dialog.prototype.trapFocus = function (event) {
+aria.Dialog.prototype.trapFocus = function(event) {
     if (aria.Utils.IgnoreUtilFocusChanges) {
         return;
     }
@@ -233,7 +235,7 @@ aria.Utils.IgnoreUtilFocusChanges = false;
 aria.Utils.dialogOpenClass = 'ila-body--has-dialog';
 
 // Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-aria.Utils.matches = function (element, selector) {
+aria.Utils.matches = function(element, selector) {
     if (!Element.prototype.matches) {
         Element.prototype.matches =
             Element.prototype.matchesSelector ||
@@ -241,7 +243,7 @@ aria.Utils.matches = function (element, selector) {
             Element.prototype.msMatchesSelector ||
             Element.prototype.oMatchesSelector ||
             Element.prototype.webkitMatchesSelector ||
-            function (s) {
+            function(s) {
                 var matches = element.parentNode.querySelectorAll(s);
                 var i = matches.length;
                 while (--i >= 0 && matches.item(i) !== this) {
@@ -254,7 +256,7 @@ aria.Utils.matches = function (element, selector) {
     return element.matches(selector);
 };
 
-aria.Utils.remove = function (item) {
+aria.Utils.remove = function(item) {
     if (item.remove && typeof item.remove === 'function') {
         return item.remove();
     }
@@ -268,7 +270,7 @@ aria.Utils.remove = function (item) {
     return false;
 };
 
-aria.Utils.isFocusable = function (element) {
+aria.Utils.isFocusable = function(element) {
     if (element.tabIndex < 0) {
         return false;
     }
@@ -294,7 +296,7 @@ aria.Utils.isFocusable = function (element) {
     }
 };
 
-aria.Utils.getAncestorBySelector = function (element, selector) {
+aria.Utils.getAncestorBySelector = function(element, selector) {
     if (!aria.Utils.matches(element, selector + ' ' + element.tagName)) {
         // Element is not inside an element that matches selector
         return null;
@@ -314,26 +316,26 @@ aria.Utils.getAncestorBySelector = function (element, selector) {
     return ancestor;
 };
 
-aria.Utils.hasClass = function (element, className) {
+aria.Utils.hasClass = function(element, className) {
     return new RegExp('(\\s|^)' + className + '(\\s|$)').test(
         element.className
     );
 };
 
-aria.Utils.addClass = function (element, className) {
+aria.Utils.addClass = function(element, className) {
     if (!aria.Utils.hasClass(element, className)) {
         element.className += ' ' + className;
     }
 };
 
-aria.Utils.removeClass = function (element, className) {
+aria.Utils.removeClass = function(element, className) {
     var classRegex = new RegExp('(\\s|^)' + className + '(\\s|$)');
     element.className = element.className.replace(classRegex, ' ').trim();
 };
 
-aria.Utils.bindMethods = function (object /* , ...methodNames */) {
+aria.Utils.bindMethods = function(object /* , ...methodNames */ ) {
     var methodNames = Array.prototype.slice.call(arguments, 1);
-    methodNames.forEach(function (method) {
+    methodNames.forEach(function(method) {
         object[method] = object[method].bind(object);
     });
 };
