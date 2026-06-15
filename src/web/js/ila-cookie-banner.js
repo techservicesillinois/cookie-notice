@@ -34,9 +34,6 @@ function check_do_not_track() {
 }
 
 async function openCookieB(cookiebId) {
-    // Do not show if our 'dismiss' cookie is set
-    let skip = await getDismissCookieNotice();
-    if(skip) { return; }
 
 		if (check_do_not_track() === true) {
 			/* If sent 'Do Not Track', then disable 'Accept All', and show explanation. */
@@ -45,6 +42,10 @@ async function openCookieB(cookiebId) {
 			let doNotTrackText = document.getElementById('ilaCookieDoNotTrackText');
 			doNotTrackText.hidden = false;
 		}
+
+    // Do not show if our 'dismiss' cookie is set
+    let skip = await getDismissCookieNotice();
+    if(skip) { return; }
 
     let cookieb = document.getElementById(cookiebId);
     cookieb.classList.remove('ila-cookieb--closed');
