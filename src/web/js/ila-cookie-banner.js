@@ -1,59 +1,61 @@
-let cookie_url = 'DEPLOY_URL';  // This is replaced with the correct URL during GitHub Action runs.
+let cookie_url = 'DEPLOY_URL'; // This is replaced with the correct URL during GitHub Action runs.
 // cookie_url = '.' // Uncomment when testing specific domain using local host entries.
 if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     cookie_url = '.'; // For local testing only
-    console.warn('Cookie Banner is in development mode: '
-        + 'Please set cookie_url in production.');
+    console.warn('Cookie Banner is in development mode: ' +
+        'Please set cookie_url in production.');
 }
 
 var this_script = document.currentScript; // Must run before any function calls
 
 function check_do_not_track() {
-	// check whether the browser support Do not track
-	if (navigator.doNotTrack || window.doNotTrack || navigator.globalPrivacyControl) {
-		// if it supports
-		// then check for the doNotTrack property in each known case
-		if (
-			window.doNotTrack === "1" ||
-			navigator.doNotTrack === "1" ||
-			navigator.doNotTrack === "yes" || 
-			navigator.globalPrivacyControl === true
-		) {
-			// the options is enabled
-			console.log("Obeying browser 'Do not track' signal");
-			return true;
-		} else {
-			// the option is not enabled
-			console.log("Do not track checked, and not found");
-			return false;
-		}
-	} else {
-		console.log("No recognized 'do not track' found");
-		return false;
-	}
+    // check whether the browser support Do not track
+    if (navigator.doNotTrack || window.doNotTrack || navigator.globalPrivacyControl) {
+        // if it supports
+        // then check for the doNotTrack property in each known case
+        if (
+            window.doNotTrack === "1" ||
+            navigator.doNotTrack === "1" ||
+            navigator.doNotTrack === "yes" ||
+            navigator.globalPrivacyControl === true
+        ) {
+            // the options is enabled
+            console.log("Obeying browser 'Do not track' signal");
+            return true;
+        } else {
+            // the option is not enabled
+            console.log("Do not track checked, and not found");
+            return false;
+        }
+    } else {
+        console.log("No recognized 'do not track' found");
+        return false;
+    }
 }
 
 async function openCookieB(cookiebId) {
 
-		let no_track = check_do_not_track();
+    let no_track = check_do_not_track();
 
-		if (no_track === true) {
-			/* If sent 'Do Not Track', then disable 'Accept All', and show explanation. */
-			let acceptButton = document.getElementById('ilaCookieAcceptButton');
-			acceptButton.disabled = true;
-			let doNotTrackText = document.getElementById('ilaCookieDoNotTrackText');
-			doNotTrackText.hidden = false;
-		}
+    if (no_track === true) {
+        /* If sent 'Do Not Track', then disable 'Accept All', and show explanation. */
+        let acceptButton = document.getElementById('ilaCookieAcceptButton');
+        acceptButton.disabled = true;
+        let doNotTrackText = document.getElementById('ilaCookieDoNotTrackText');
+        doNotTrackText.hidden = false;
+    }
 
     // Do not show if our 'dismiss' cookie is set
     let skip = await getNoticeCookie('hidden');
-    if(skip) { 
-			if(no_track === true) { return; }  // Browser setting wins
-			if(await getNoticeCookie('accept_all') === true) {
-				user_accepted_all()  // Hand-off to site owner analytics code
-			}
-			return; 
-		}
+    if (skip) {
+        if (no_track === true) {
+            return;
+        } // Browser setting wins
+        if (await getNoticeCookie('accept_all') === true) {
+            user_accepted_all() // Hand-off to site owner analytics code
+        }
+        return;
+    }
 
     let cookieb = document.getElementById(cookiebId);
     cookieb.classList.remove('ila-cookieb--closed');
@@ -78,7 +80,9 @@ async function openCookieB(cookiebId) {
     // Start the focus on the X button so that reading can continue from there.
     let cookie_focus = document.getElementById('ilaCookieNoticeDiv');
     cookie_focus.setAttribute('tabindex', '-1'); // Focusable, but outside tab order
-    if(cookie_focus){ cookie_focus.focus(); }
+    if (cookie_focus) {
+        cookie_focus.focus();
+    }
 
 }
 
@@ -110,16 +114,16 @@ function closeCookieB(cookiebId, decision = "denied") {
     }
 }
 
-function user_accepted_all(){ 
-	if (typeof enable_tracking === "function") {
-	 setNoticeCookie('accept_all');
-	 enable_tracking();
-	}
+function user_accepted_all() {
+    if (typeof enable_tracking === "function") {
+        setNoticeCookie('accept_all');
+        enable_tracking();
+    }
 }
 
 function cookieDecision(decision) {
     if (decision == 'granted') {
-			user_accepted_all();
+        user_accepted_all();
     }
 }
 
@@ -136,34 +140,33 @@ async function getCookieBannerContent(content_path) {
 }
 
 function getBaseDomain() {
-  const hostname = window.location.hostname;
-  const parts = hostname.split('.');
+    const hostname = window.location.hostname;
+    const parts = hostname.split('.');
 
-  if (parts.length >= 2) {
-    return '.' + parts.slice(-2).join('.'); // returns last two terms of url
-  } else {
-    return hostname; // fallback for localhost, etc.
-  }
+    if (parts.length >= 2) {
+        return '.' + parts.slice(-2).join('.'); // returns last two terms of url
+    } else {
+        return hostname; // fallback for localhost, etc.
+    }
 }
 
-function getCookieString(expires, type='hidden') { 
-		// cookie types are 'hidden' and 'accept_all'
+function getCookieString(expires, type = 'hidden') {
+    // cookie types are 'hidden' and 'accept_all'
     return "cookie_notice_" + type + "=true;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
 }
 
-function getFallBackCookieString(expires, type='hidden') {
-	  // Cannot always set cookie at base domain.
-		// cookie types are 'hidden' and 'accept_all'
+function getFallBackCookieString(expires, type = 'hidden') {
+    // Cannot always set cookie at base domain.
+    // cookie types are 'hidden' and 'accept_all'
     return "cookie_notice_" + type + "=true;Path=/;SameSite=Lax;expires=" + expires.toUTCString();
 }
 
 async function setNoticeCookie(type) {
-		// cookie types are 'hidden' and 'accept_all'
+    // cookie types are 'hidden' and 'accept_all'
     var expires = new Date();
     expires.setMonth(expires.getMonth() + 6);
     document.cookie = getCookieString(expires, type);
-    if(!await getNoticeCookie('hidden'))
-    {
+    if (!await getNoticeCookie('hidden')) {
         // Site headers may reject our attempt to set a domain-wide cookie. (github.io does)
         // Recover by setting a cookie only for the current sub-domain.
         console.debug("Browser rejected domain-wide cookie. Setting local cookie to suppress dismissed notice.");
@@ -172,9 +175,9 @@ async function setNoticeCookie(type) {
 }
 
 async function getNoticeCookie(type) {
-		// cookie types are 'hidden' and 'accept_all'
-    let result = ('; '+document.cookie).split(`; cookie_notice_` + type + `=`).pop().split(';')[0];
-    if(result == "") {
+    // cookie types are 'hidden' and 'accept_all'
+    let result = ('; ' + document.cookie).split(`; cookie_notice_` + type + `=`).pop().split(';')[0];
+    if (result == "") {
         return false;
     }
     return true;
@@ -196,13 +199,13 @@ async function addCookieBanner() {
     let about_button = document.getElementById("ot-sdk-btn");
 
     let data_fetch = this_script.getAttribute("data-cookie-fetch");
-    if(data_fetch != "no"){
+    if (data_fetch != "no") {
 
         /* Appends to the end of the page. */
         let theme = this_script.getAttribute("data-domain-script");
 
-        switch(theme) {
-            case "c2f2262d-b694-4eba-8f4b-142c102b685a":  // UIC
+        switch (theme) {
+            case "c2f2262d-b694-4eba-8f4b-142c102b685a": // UIC
             case "uic":
                 css_content = await getCookieBannerContent(cookie_url + '/css/ila-cookie-uic-colors.css');
                 break;
@@ -229,8 +232,9 @@ async function addCookieBanner() {
                     alert("Cookie Notice is down for maintenance.");
                 });
             }
-            return;  /* Prevents showing any S3 error messages at the end of every
-                        campus webpage. */
+            return;
+            /* Prevents showing any S3 error messages at the end of every
+                                  campus webpage. */
         }
         document.body.insertAdjacentHTML("beforeend", banner_content);
 
@@ -286,22 +290,24 @@ async function addCookieBanner() {
 
 }
 
-window.addEventListener("load", function(event){
+window.addEventListener("load", function(event) {
     addCookieBanner();
 });
 
 function createCookieNoticeFocusCycle() {
     first = document.getElementById("ilaCookieBXButton");
-    first.addEventListener('keydown', function(e){
-        if (e.keyCode===9 && e.shiftKey) {
+    first.addEventListener('keydown', function(e) {
+        if (e.keyCode === 9 && e.shiftKey) {
             last.focus();
             e.preventDefault();
-        }});
+        }
+    });
 
     last = document.getElementById("ilaCookieRejectButton");
-    last.addEventListener('keydown', function(e){
-        if (e.keyCode===9 && !e.shiftKey) {
+    last.addEventListener('keydown', function(e) {
+        if (e.keyCode === 9 && !e.shiftKey) {
             first.focus();
             e.preventDefault();
-        }});
+        }
+    });
 }
