@@ -46,10 +46,11 @@ async function openCookieB(cookiebId) {
 		}
 
     // Do not show if our 'dismiss' cookie is set
-    let skip = await getCookie('hidden');
+    let skip = await getNoticeCookie('hidden');
     if(skip) { 
 			if(no_track === true) { return; }  // Browser setting wins
-		  if(getCookie('accept_all') === true) {  // TODO: Fix this line
+			debugger;
+		  if(await getNoticeCookie('accept_all') === true) {  // TODO: Fix this line
 				user_accepted_all()  // Hand-off to site owner analytics code
 			}
 			return; 
@@ -158,7 +159,7 @@ async function setNoticeCookie(type) {
     var expires = new Date();
     expires.setMonth(expires.getMonth() + 6);
     document.cookie = getCookieString(expires, type);
-    if(!await getCookie('hidden'))
+    if(!await getNoticeCookie('hidden'))
     {
         // Site headers may reject our attempt to set a domain-wide cookie. (github.io does)
         // Recover by setting a cookie only for the current sub-domain.
@@ -167,7 +168,7 @@ async function setNoticeCookie(type) {
     }
 }
 
-async function getCookie(type) {
+async function getNoticeCookie(type) {
 		// cookie types are 'hidden' and 'accept_all'
     let result = ('; '+document.cookie).split(`; cookie_notice_` + type + `=`).pop().split(';')[0];
     if(result == "") {
