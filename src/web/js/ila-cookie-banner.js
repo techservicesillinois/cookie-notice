@@ -46,12 +46,12 @@ async function openCookieB(cookiebId) {
 		}
 
     // Do not show if our 'dismiss' cookie is set
-    let skip = await getDismissCookieNotice();
+    let skip = await getCookie('hidden');
     if(skip) { 
 			if(no_track === true) { return; }  // Browser setting wins
-
-			// TODO: Call `user_accepted_all` here, if they previously pressed 'Accept All Cookies'.
-			user_accepted_all()  // Hand-off to site owner analytics code
+		  if(getCookie('accept_all') === true) {  // TODO: Fix this line
+				user_accepted_all()  // Hand-off to site owner analytics code
+			}
 			return; 
 		}
 
@@ -94,7 +94,7 @@ function closeCookieB(cookiebId, decision = "denied") {
         cookieb.classList.add('ila-cookieb--closed');
 
         // Remember that the notice has been dismissed
-        setDismissCookieNotice();
+        setNoticeCookie('hidden');
 
         // Used to enable scroll on the page
         document.body.classList.remove('ila-cookieb-noscroll');
@@ -113,7 +113,8 @@ function closeCookieB(cookiebId, decision = "denied") {
 function cookieDecision(decision) {
     if (decision == 'granted') {
 			if (typeof user_accepted_all === "function") {
-			 user_accepted_all()
+			 setNoticeCookie('accept_all');
+			 user_accepted_all();
 			}
     }
 }
@@ -141,49 +142,34 @@ function getBaseDomain() {
   }
 }
 
-function getCookieString(expires) {
-    return "cookie_notice_essential=hide;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
+function getCookieString(expires, type='hidden') { 
+		// cookie types are 'hidden' and 'accept_all'
+    return "cookie_notice_" + type + "=true;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
 }
 
-function getFallBackCookieString(expires) {
-    return "cookie_notice_essential=hide;Path=/;SameSite=Lax;expires=" + expires.toUTCString();
+function getFallBackCookieString(expires, type='hidden') {
+	  // Cannot always set cookie at base domain.
+		// cookie types are 'hidden' and 'accept_all'
+    return "cookie_notice_" + type + "=true;Path=/;SameSite=Lax;expires=" + expires.toUTCString();
 }
 
-async function setDismissCookieNotice() {
+async function setNoticeCookie(type) {
+		// cookie types are 'hidden' and 'accept_all'
     var expires = new Date();
     expires.setMonth(expires.getMonth() + 6);
-    document.cookie = getCookieString(expires);
-    if(!await getDismissCookieNotice())
+    document.cookie = getCookieString(expires, type);
+    if(!await getCookie('hidden'))
     {
         // Site headers may reject our attempt to set a domain-wide cookie. (github.io does)
         // Recover by setting a cookie only for the current sub-domain.
         console.debug("Browser rejected domain-wide cookie. Setting local cookie to suppress dismissed notice.");
-        document.cookie = getFallBackCookieString(expires);
+        document.cookie = getFallBackCookieString(expires, type);
     }
 }
 
-async function getDismissCookieNotice() {
-    let result = ('; '+document.cookie).split(`; cookie_notice_essential=`).pop().split(';')[0];
-    if(result == "") {
-        return false;
-    }
-    return true;
-}
-
-
-/* Track user opt-in to tracking */
-function getCookieAcceptAllString(expires) {
-    return "cookie_notice_accept_all=true;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
-}
-
-async function setAcceptAllCookieNotice() {
-    var expires = new Date();
-    expires.setMonth(expires.getMonth() + 6);
-    document.cookie = getCookieEssentialString(expires);
-}
-
-async function getAcceptAllCookieNotice() {
-    let result = ('; '+document.cookie).split(`; cookie_notice_accept_all=`).pop().split(';')[0];
+async function getCookie(type) {
+		// cookie types are 'hidden' and 'accept_all'
+    let result = ('; '+document.cookie).split(`; cookie_notice_` + type + `=`).pop().split(';')[0];
     if(result == "") {
         return false;
     }
@@ -196,7 +182,8 @@ function unsetCookieNoticeCookie() {
     expires.setMonth(expires.getMonth() - 1);
     // Use getFallBackCookieString because getCookieString does not work on
     // github.io domains.
-    document.cookie = getFallBackCookieString(expires);
+    document.cookie = getFallBackCookieString(expires, 'hidden');
+    document.cookie = getFallBackCookieString(expires, 'accept_all');
     location.reload();
 }
 
