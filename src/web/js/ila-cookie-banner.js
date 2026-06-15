@@ -35,7 +35,9 @@ function check_do_not_track() {
 
 async function openCookieB(cookiebId) {
 
-		if (check_do_not_track() === true) {
+		let no_track = check_do_not_track();
+
+		if (no_track === true) {
 			/* If sent 'Do Not Track', then disable 'Accept All', and show explanation. */
 			let acceptButton = document.getElementById('ilaCookieAcceptButton');
 			acceptButton.disabled = true;
@@ -45,7 +47,13 @@ async function openCookieB(cookiebId) {
 
     // Do not show if our 'dismiss' cookie is set
     let skip = await getDismissCookieNotice();
-    if(skip) { return; }
+    if(skip) { 
+			if(no_track === true) { return; }  // Browser setting wins
+
+			// TODO: Call `user_accepted_all` here, if they previously pressed 'Accept All Cookies'.
+			user_accepted_all()  // Hand-off to site owner analytics code
+			return; 
+		}
 
     let cookieb = document.getElementById(cookiebId);
     cookieb.classList.remove('ila-cookieb--closed');
@@ -134,13 +142,12 @@ function getBaseDomain() {
 }
 
 function getCookieString(expires) {
-    return "cookie_notice=hide;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
+    return "cookie_notice_essential=hide;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
 }
 
 function getFallBackCookieString(expires) {
-    return "cookie_notice=hide;Path=/;SameSite=Lax;expires=" + expires.toUTCString();
+    return "cookie_notice_essential=hide;Path=/;SameSite=Lax;expires=" + expires.toUTCString();
 }
-
 
 async function setDismissCookieNotice() {
     var expires = new Date();
@@ -156,7 +163,27 @@ async function setDismissCookieNotice() {
 }
 
 async function getDismissCookieNotice() {
-    let result = ('; '+document.cookie).split(`; cookie_notice=`).pop().split(';')[0];
+    let result = ('; '+document.cookie).split(`; cookie_notice_essential=`).pop().split(';')[0];
+    if(result == "") {
+        return false;
+    }
+    return true;
+}
+
+
+/* Track user opt-in to tracking */
+function getCookieAcceptAllString(expires) {
+    return "cookie_notice_accept_all=true;Path=/;SameSite=Lax;domain=" + getBaseDomain() + ";expires=" + expires.toUTCString();
+}
+
+async function setAcceptAllCookieNotice() {
+    var expires = new Date();
+    expires.setMonth(expires.getMonth() + 6);
+    document.cookie = getCookieEssentialString(expires);
+}
+
+async function getAcceptAllCookieNotice() {
+    let result = ('; '+document.cookie).split(`; cookie_notice_accept_all=`).pop().split(';')[0];
     if(result == "") {
         return false;
     }
