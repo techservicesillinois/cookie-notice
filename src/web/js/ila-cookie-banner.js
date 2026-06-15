@@ -49,7 +49,6 @@ async function openCookieB(cookiebId) {
     let skip = await getNoticeCookie('hidden');
     if(skip) { 
 			if(no_track === true) { return; }  // Browser setting wins
-			debugger;
 		  if(await getNoticeCookie('accept_all') === true) {  // TODO: Fix this line
 				user_accepted_all()  // Hand-off to site owner analytics code
 			}
