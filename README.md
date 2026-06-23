@@ -45,7 +45,7 @@ The strongest factor for our End-of-Life date is the lifecycle of ECMAScript, th
 
 End-of-Life was decided based on these dependencies:
 
-- ECMAScript 2025 -  A conservative esimtate of earliest likely breaking changes for this effort, due to changes in the ECMAScript Standard, is June 2030.
+- ECMAScript 2025 -  A conservative estimate of earliest likely breaking changes for this effort, due to changes in the ECMAScript Standard, is June 2030.
 - Firefox ESR 140 (Support Ends June 2026)
 - Firefox 151 (Support Ends June 2026)
 - Google Chrome (Support Ends 8 weeks after release - https://chromium.googlesource.com/chromium/src/+/master/docs/process/release_cycle.md)
