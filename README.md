@@ -41,7 +41,7 @@ This date may roll forward as future browser releases become available and the c
 
 Web browsers provide very short official support windows (if any), but history of the shared EMCA Script Standard (for JavaScript) reveals minor breaking changes roughly every five years, during annual June updates.
 
-The strongest factor for our ed-of-life date is the lifecycle of ECMAScript, the shared cross-browser JavaScript implementation standard. The ECMAScript standard is updated annually in June. [The ISO ECMA Script Specification has a 5 year lifecycle](https://www.iso.org/standard/73002.html).
+The strongest factor for our End-of-Life date is the lifecycle of ECMAScript, the shared cross-browser JavaScript implementation standard. The ECMAScript standard is updated annually in June. [The ISO ECMA Script Specification has a 5 year lifecycle](https://www.iso.org/standard/73002.html).
 
 End-of-Life was decided based on these dependencies:
 
