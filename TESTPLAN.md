@@ -209,8 +209,6 @@ Objective: Verify that analytics are allowed to load if the user selects 'Accept
   - Under 'Storage/Cookies', there should be one or more cookies named starting with `_ga`
 - Reset for future tests by clearing all cookies (see above)
 
-(This test is expected to fail until issue #26 is fixed.)
-
 ## Check for JavaScript Errors
 
 Objective: Verify that JavaScript included in the notice does not cause scripts to stop loading.
