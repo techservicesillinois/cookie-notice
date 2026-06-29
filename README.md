@@ -18,6 +18,12 @@ for information about our development standards.
 
 [kbsearch]: https://answers.uillinois.edu/illinois/search.php?q=cybersecurity+developer&cat=0
 
+## Usage
+
+- TODO: How to use "Accept All" cookies
+- TODO: How to provide an "About Cookies" button outside the notice
+- TODO: How to use a UIC or UIS color theme
+
 ## Data Sources
 
 |Data Store|Data Type|Sensitivity|Notes|
