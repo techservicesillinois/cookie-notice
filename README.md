@@ -18,17 +18,26 @@ for information about our development standards.
 
 [kbsearch]: https://answers.uillinois.edu/illinois/search.php?q=cybersecurity+developer&cat=0
 
+## Usage
+
+- TODO: How to use "Accept All" cookies
+- TODO: How to provide an "About Cookies" button outside the notice
+- TODO: How to use a UIC or UIS color theme
+
 ## Data Sources
 
 |Data Store|Data Type|Sensitivity|Notes|
 |----------|---------|-----------|-----|
-| Local Browser Storage | Cookie | Internal | When the notice is dismissed, a cookie is set to cause the notice to no longer appear in the current browser for six months. | 
+| Local Browser Storage | Cookie | Internal | When the notice is dismissed, a cookie is set to cause the notice to no longer appear in the current browser for six months. |
+| Local Browser Storage | Cookie | Internal | When a user clicks "Accept All", a cookie is set to remember their decision for six months and allow analytics to run. |
+| Third-Party Analytics | Tracking | Internal | When a user clicks "Accept All", websites may track user behavior through third-party providers. |
 
 ## Endpoint Connections
 
 |Endpoint|Purpose|Stage|Access|
 |--------|-------|-----|------|
-| https://onetrust.techservices.illinois.edu | To simplify hosting on campus, components of this solution may be dynamically loaded from this shared endpoint. | Production | Publc Read-Only |
+| https://onetrust.techservices.illinois.edu | To simplify hosting on campus, components of this solution may be dynamically loaded from this shared endpoint. | Production | Public Read-Only |
+| Varies - Websites may invoke third-party analytics when a user clicks "Accept All" | To understand how users use campus websites. | Production | Varies With Third-Party Terms of Service |
 
 
 ## Product Lifecycle
