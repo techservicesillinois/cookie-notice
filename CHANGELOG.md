@@ -13,7 +13,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove `Always Active` from descriptions in places it no longer applies. (Pull Request [#33](https://github.com/techservicesillinois/cookie-notice/pull/33))
 - Disable 'Accept All Cookies' button when a 'Do Not Track' signal is received (Pull Request [#24](https://github.com/techservicesillinois/cookie-notice/pull/24))
 - Add accept/deny buttons (Pull Request [#9](https://github.com/techservicesillinois/cookie-notice/pull/9))
- 
 
 ## [1.2.0] - 2025-12-03
 
