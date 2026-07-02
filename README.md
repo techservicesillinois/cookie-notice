@@ -75,7 +75,25 @@ async function enable_tracking() {
 
 ## Using Color Themes
 
-- TODO: How to use a UIC or UIS color theme
+The Illinois Cookie Notice ships with three sets of accessible brand-compliant colors. See `ila-cookie-banner.css`, `ila-cookie-uic-colors.css`, `ila-cookie-uis-colors.css`, and `ila-cookie-uiuc-colors.css` for specifics.
+
+## Dyanamically Loading a Color Theme (Deprecated)
+
+When the notice is being dynamically loaded, the `data-domain-script` attribute determines which color theme to load.
+
+Dynamic loading is not recommended for version 2.0.0 and later of the Cookie Notice. Rather than dynamic loading, consider re-hosting the relevant files, or (coming soon) using the Cookie Notice through the Illinois Web Toolkit.
+
+For example:
+
+```
+<script data-domain-script="uis" src="js/ila-cookie-banner.js"></script>
+```
+
+or
+
+```
+<script data-domain-script="uic" src="js/ila-cookie-banner.js"></script>
+```
 
 ## Data Sources
 
