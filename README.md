@@ -2,10 +2,10 @@
 
 This repository provides the Cookie Notice banner used by the University of Illinois.
 
-This notice solution complies with University of Illinois expectations for 
+This notice solution complies with University of Illinois expectations for
 accessibility, branding, and security.
 
-This resource can help web hosting teams on campus comply with 
+This resource can help web hosting teams on campus comply with
 University of Illinois Cybersecurity standards
 - including [IT-07][it07], [IT08][it08], and [IT13][it13].
 
@@ -14,7 +14,7 @@ University of Illinois Cybersecurity standards
 [it13]: https://go.illinois.edu/secstd-IT13
 
 See [Cybersecurity Development on the Illinois Knowledge Base][kbsearch]
-for information about our development standards. 
+for information about our development standards.
 
 [kbsearch]: https://answers.uillinois.edu/illinois/search.php?q=cybersecurity+developer&cat=0
 
@@ -22,13 +22,27 @@ for information about our development standards.
 
 - See `TESTPLAN.md` for details of expected use cases.
 
-## Setup 
+## Setup
 
 Recommendations follow for using the Cookie Notice in a web site.
 
 ### Provide a Separate 'About Cookies' Button
 
-- TODO: How to provide an "About Cookies" button outside the notice
+The Illinois Cookie Notice will look for any button with `id="ila-about-cookies-btn"`,
+and will bind it to the function that displays the `About Cookies` slide-out.
+
+Most Illinois web pages should include an `About Cookies` button in the website footer.
+Most Illinois web templates already include an `About Cookies` button in the website footer.
+
+```html
+<button type="button" id="ila-about-cookies-btn" class="il-button">
+    About Cookies
+</button>
+```
+
+Older templates may include an `About Cookies` button with `id="ot-sdk-btn"`.
+Cookie Notice version 2.0.0 will also bind the slide-out function to these buttons,
+for backwards compatibility.
 
 ## Usage with Analytics Platforms
 
@@ -44,7 +58,7 @@ Example code:
 <script>
 async function enable_tracking() {
     // This site uses the University of Illinois Cookie Notice.
-    // The Cookie Notice will call `enable_tracking` on each visit 
+    // The Cookie Notice will call `enable_tracking` on each visit
     // where appropriate
 
     // Loading tracking or analytics code outside of this function
