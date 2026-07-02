@@ -198,7 +198,8 @@ async function addCookieBanner() {
 
     let about_button = document.getElementById("ila-about-cookies-btn");
     if(!about_button) {
-        let about_button = document.getElementById("ot-sdk-btn");
+				console.log("ila-about-cookies-btn not found. Checking for ot-sdk-btn");
+        about_button = document.getElementById("ot-sdk-btn");
     }
 
     let data_fetch = this_script.getAttribute("data-cookie-fetch");

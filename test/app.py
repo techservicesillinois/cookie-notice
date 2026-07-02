@@ -37,3 +37,8 @@ def stupid_hack_csp():
 @app.route("/gtag")
 def stupid_hack_gtag():
     return render_template("gtag.html")
+
+@app.route("/legacy")
+def stupid_hack_legacy():
+    return render_template("legacy.html")
+
