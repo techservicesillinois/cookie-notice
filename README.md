@@ -18,10 +18,63 @@ for information about our development standards.
 
 [kbsearch]: https://answers.uillinois.edu/illinois/search.php?q=cybersecurity+developer&cat=0
 
-## Usage
+## Expected Use by Users
 
-- TODO: How to use "Accept All" cookies
+- See `TESTPLAN.md` for details of expected use cases.
+
+## Setup 
+
+Recommendations follow for using the Cookie Notice in a web site.
+
+### Provide a Separate 'About Cookies' Button
+
 - TODO: How to provide an "About Cookies" button outside the notice
+
+## Usage with Analytics Platforms
+
+Do not Load Third Party Analytics until a user presses 'Accept All'.
+
+If your site provides a function called `enable_tracking`, the cookie notice will call it after the user presses `Accept All`, and on each future visit by such users to your site.
+
+If your site uses version 2.0.0 or later of the cookie notice; loading analytics outside of the `enable_tracking` function is dishonest, and is a violation of University policies.
+
+Example code:
+
+```html
+<script>
+async function enable_tracking() {
+    // This site uses the University of Illinois Cookie Notice.
+    // The Cookie Notice will call `enable_tracking` on each visit 
+    // where appropriate
+
+    // Loading tracking or analytics code outside of this function
+    // is dishonest and violates University policies.
+
+    console.warn('Loading Google analytics...');
+    var gtagId = "G-<your google tag>";
+
+    // Define queue + shim before loading GA
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+
+    // Wait for external script to finish loading
+    await new Promise((resolve, reject) => {
+        const s = document.createElement("script");
+        s.src = "https://www.googletagmanager.com/gtag/js?id=" + gtagId;
+        s.async = true;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+    });
+
+    gtag("js", new Date());
+    gtag("config", gtagId);
+}
+</script>
+```
+
+## Using Color Themes
+
 - TODO: How to use a UIC or UIS color theme
 
 ## Data Sources
