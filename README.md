@@ -48,7 +48,7 @@ for backwards compatibility.
 
 Do not Load Third Party Analytics until a user presses 'Accept All'.
 
-If your site provides a function called `enable_tracking`, the cookie notice will call it after the user presses `Accept All`, and on each future visit by such users to your site.
+If your site provides a function called `enable_tracking`, the Cookie Notice will call it after the user presses `Accept All`, and on each future visit by such users to your site.
 
 If your site uses version 2.0.0 or later of the cookie notice; loading analytics outside of the `enable_tracking` function is dishonest, and is a violation of University policies.
 
