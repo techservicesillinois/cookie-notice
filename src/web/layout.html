@@ -136,9 +136,11 @@
             </div>
 
             <div>
-                <button type="button" id="ot-sdk-btn" class="ot-sdk-show-settings il-button">
+						{% block about_button%}
+                <button type="button" id="ila-about-cookies-btn" class="il-button">
                     About Cookies
                 </button>
+						{% endblock %}
                 <p>
                     When the cookie banner is dismissed, a cookie is set to prevent it from displaying again for six months on any site that allows the cookie.
                 </p>
@@ -165,6 +167,7 @@
 										<li><a href="/">Example with Illinois colors</a></li>
 										<li><a href="/uic">Example with UIS colors</a></li>
 										<li><a href="/uic">Example with UIC colors</a></li>
+										<li><a href="/legacy">Legacy Example</a></li>
 									</ul>
                 {% endblock %}
 
