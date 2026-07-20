@@ -1,13 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# cd test
-
-# EXTRA_FILES="$(
-#   find ../src/web -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print | tr '\n' ':'
-# )"
-# EXTRA_FILES="${EXTRA_FILES%:}"
-
 npm run dev > .server.logs 2>&1 &
 
 PID=$!
