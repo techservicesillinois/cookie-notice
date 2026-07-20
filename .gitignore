@@ -55,3 +55,6 @@ output.xml
 
 # Setuptools generated files
 _version.py
+
+# Node
+node_modules/

@@ -1,0 +1,29 @@
+{
+  "name": "cookie-notice",
+  "version": "1.0.0",
+  "description": "This repository provides the Cookie Notice banner used by the University of Illinois.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/techservicesillinois/cookie-notice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "See LICENSE in the repository root for license information.",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/techservicesillinois/cookie-notice/issues"
+  },
+  "homepage": "https://github.com/techservicesillinois/cookie-notice#readme",
+  "devDependencies": {
+    "vite": "^8.1.5",
+    "vite-plugin-nunjucks": "^0.2.0"
+  }
+}
