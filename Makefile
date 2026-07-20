@@ -1,7 +1,7 @@
 .PHONY: server
 
 server: .server
-.server: .venv
+.server:
 	bin/server &
 
 logs:
@@ -13,12 +13,5 @@ tail:
 kill:
 	-kill $$(cat .server)
 
-venv: .venv
-.venv: requirements-test.in
-	rm -rf $@
-	python3 -m venv $@
-	.venv/bin/python -m pip install -r $^
-
 clean: kill
 	-rm -f .server.logs
-	-rm -rf .venv

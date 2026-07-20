@@ -26,35 +26,13 @@ investigations/*
 
 # Makefile targets
 .build
-.deps-test
 .develop
 .lint
-.requirements.venv
 .static
-.venv/
 build/
-dist/
-venv
-wheels
-
-# Python
-__pycache__/
-.mypy_cache/
-.pytest_cache
-.python-version
-*.egg-info
-*.eggs
-
-# Python Coverage.py
-.coverage
-report.html
-
-# Robot Framework
-log.html
-output.xml
-
-# Setuptools generated files
-_version.py
 
 # Node
 node_modules/
+
+# Vite
+.vite/
