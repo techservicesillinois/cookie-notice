@@ -11,7 +11,7 @@ Test Strategy: Manual Tests
 Resources:
 - [Demo Site on GitHub Pages][1]
 
-Risks: 
+Risks:
 - The Illinois Cookie Notice runs on every campus web site.
 - Accessibility errors may harm campus users on any affected sites.
 - JavaScript errors may cause other scripts to fail.
@@ -44,12 +44,11 @@ Some testing steps are repeated often, and documented here for re-use.
 
 > Support and how to configure 'Do Not Track' varies by web browser.
 > These steps work for Firefox.
+> Tip: When testing for successful analytics, be sure to disable both 'Do Not Track' and any ad-blocking plugins (such as uBlock or Privacy Badger), or the analytics may not load.
 
 - Open Firefox and navigate to 'about:settings#privacy'
 - To send 'Do Not Track', *check* the box next to 'Tell websites not to sell or share my data'
 - To stop sending 'Do Not Track', *uncheck* the box next to 'Tell websites not to sell or share my data'
-
-> Tip: When testing for successful analytics, be sure to disable both 'Do Not Track' and any ad-blocking plugins (such as uBlock), or the analytics may not load.
 
 ### Shared Step - Clear Browser Cookies
 
@@ -63,7 +62,7 @@ Objective: Verify that the 'About Cookies' slide-out appears and all content can
 - Open the Cookie Notice (see above)
 - Click on 'About Cookies'
 - Verify that 'University of Illinois - Cookie Information' appears.
-- Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window 
+- Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window
 - Click on each category of cookies, to verify that additional text is displayed.
     - Strictly Necessary Cookies
     - Performance Cookies
@@ -78,7 +77,7 @@ Objective: Verify that the 'About Cookies' slide-out appears and all content can
 - Close the Cookie Notice (see above)
 - Click on 'About Cookies' in the page footer
 - Verify that 'University of Illinois - Cookie Information' appears.
-- Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window 
+- Verify that a hover element on 'University of Illinois System Cookie Policy' indicates that the link opens in a new window
 - Click on each category of cookies, to verify that additional text is displayed.
     - Strictly Necessary Cookies
     - Performance Cookies
@@ -152,7 +151,7 @@ Objective: Verify that Keyboard Navigation continues to function after closing t
 
 - Install the Firefox AInspector plugin from https://addons.mozilla.org/en-US/firefox/addon/ainspector-wcag/
 - Open the Cookie Notice (see above)
-- Press plugin toolbar button to launch AInspector 
+- Press plugin toolbar button to launch AInspector
 - Press the 'i' to review the legend
     - V means 'Violation' these should be addressed
     - MC mean 'Manual Check' these should be reviewed
@@ -173,7 +172,7 @@ Objective: Verify that expected ARIA landmarks are present and correct
 Objective: Verify that the notice can be loaded with each set of expected brand compliant accessible colors - Illinois, UIC, and UIS
 - Visit https://app-illinois.github.io/Design-Resources/Cookie-Banner.html
 - In the `Example` Section of the page, choose the alternate variation to test
-- If the Cookie Notice is not visible, click 'Re-Show Cookie Notice' to view the chosen alternate variation 
+- If the Cookie Notice is not visible, click 'Re-Show Cookie Notice' to view the chosen alternate variation
 - Expected colors are defined in files in `src/web/css`
 
 ## Verify Analytics on First Visit
