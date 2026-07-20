@@ -12,10 +12,13 @@ const env = new nunjucks.Environment(
 
 export default defineConfig({
   root: 'src/web',
-  plugins: [nunjucksPlugin({
-    templatesDir,
-    nunjucksEnvironment: env
-  })],
+  publicDir: resolve(__dirname, 'src/web/public'),
+  plugins: [
+    nunjucksPlugin({
+      templatesDir,
+      nunjucksEnvironment: env
+    }),
+  ],
   build: {
     rollupOptions: {
       input: {
