@@ -1,0 +1,12 @@
+{
+    "title": "Cookie Notice",
+    "tag": "cookie-notice",
+    "github": "https://github.com/techservicesillinois/cookie-notice",
+    "type": "web component",
+    "element-name": "cookie-notice",
+    "description": "Illinois Cookie Notice",
+    "purpose": "Provides a Cookie Notification Banner compliant with Illinois brand and accessibliity expectations",
+    "toolkit-version": "",
+    "production-version": "",
+    "development-version": "2.0-alpha"
+}
