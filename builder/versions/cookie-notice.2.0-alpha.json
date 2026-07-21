@@ -1,0 +1,42 @@
+{
+    "title": "Cookie Notice",
+    "tag": "cookie-notice",
+    "github": "https://github.com/techservicesillinois/cookie-notice",
+    "type": "web component",
+    "element-name": "cookie-notice",
+    "description": "Illinois Cookie Notice",
+    "builder-version": "2.0-alpha",
+    "version": "2.0.0-alpha",
+    "date": "06/24/2026",
+    "css": "https://dev.toolkit.illinois.edu/cookie-notice/2.0.0-alpha/cookie-notice.css",
+    "js": "https://dev.toolkit.illinois.edu/cookie-notice/2.0.0-alpha/cookie-notice.js",
+    "production": false,
+    "notes": "",
+    "parent-style": "",
+    "samples": [
+        {
+            "name": "default",
+            "description": "Default information",
+            "text": "<p>Lorem ipsum</p>"
+        }
+    ],
+    "attributes-fixed": [],
+    "attributes-text": [],
+    "attributes": [
+        {
+            "name": "theme",
+            "description": "Color theme used",
+            "depreciated": false,
+            "values": [
+                "",
+                "blue",
+                "orange",
+                "white"
+            ]
+        }
+    ],
+    "classes-fixed": [],
+    "classes": [],
+    "css-variables": [
+    ]
+}
