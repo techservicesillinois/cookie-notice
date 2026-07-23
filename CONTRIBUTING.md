@@ -1,14 +1,39 @@
 # Local Testing / Debugging the Cookie Banner
 
-1. Install `npm` and `vite`
+1. Install `npm` using `nvm` (to ensure `npm >= 22`)
 
-    - Install `npm`:
-        - On Windows: https://nodejs.org/en/download (Note: WSL installation is quicker)
-        - On WSL or Linux: `sudo apt install npm`
-        - On Mac: `brew install npm`
-    - Install `vite` via terminal/PowerShell: `npm install -D vite`
+    - Install `nvm`: 
+        From https://github.com/nvm-sh/nvm#manual-install
 
-2. Run a mini local webserver.
+        ```shell
+        export NVM_DIR="$HOME/.nvm" && (
+          git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+          cd "$NVM_DIR"
+          git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+        ) && \. "$NVM_DIR/nvm.sh"
+        ```
+    - Add `nvm` to `.bashrc`
+        From https://github.com/nvm-sh/nvm#git-install
+
+        ```shell
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        ```
+
+    - Install `npm` (22 or higher), using `nvm`:
+
+        ```shell
+        nvm install 24
+        ```
+
+2. Install `vite` using our `Makefile`
+
+        ```shell
+        make node_modules
+        ```
+
+3. Run a mini local webserver.
 
     Modern browsers tend not to allow dynamic loading of page elements from local files, so a mini web server is needed when working on the cookie banner.
 
