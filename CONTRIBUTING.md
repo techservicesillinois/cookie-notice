@@ -1,6 +1,11 @@
 # Local Testing / Debugging the Cookie Banner
 
-1. Run a mini local webserver.
+1. Install `npm` and `vite`
+
+    - Install `npm`: https://nodejs.org/en/download 
+    - Install `vite` via terminal/PowerShell: `npm install -D vite`
+
+2. Run a mini local webserver.
 
     Modern browsers tend not to allow dynamic loading of page elements from local files, so a mini web server is needed when working on the cookie banner.
 
