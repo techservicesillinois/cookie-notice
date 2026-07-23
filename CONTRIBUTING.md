@@ -2,7 +2,10 @@
 
 1. Install `npm` and `vite`
 
-    - Install `npm`: https://nodejs.org/en/download 
+    - Install `npm`:
+        - On Windows: https://nodejs.org/en/download (Note: WSL installation is quicker)
+        - On WSL or Linux: `sudo apt install npm`
+        - On Mac: `brew install npm`
     - Install `vite` via terminal/PowerShell: `npm install -D vite`
 
 2. Run a mini local webserver.
