@@ -5,7 +5,7 @@
         - Install `Node` from https://nodejs.org/en/download
         - If necessary, update `npm` via PowerShell: `npm install -g npm@12.0.1`
     - On WSL
-        - install `npm` using `nvm` (to ensure `npm >= 22`)
+        - Install `npm` using `nvm` (to ensure `npm >= 22`)
         - Install `nvm`:
             From <https://github.com/nvm-sh/nvm#manual-install>
     
