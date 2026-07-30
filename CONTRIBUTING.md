@@ -2,8 +2,8 @@
 
 1. Install `npm` using `nvm` (to ensure `npm >= 22`)
 
-    - Install `nvm`: 
-        From https://github.com/nvm-sh/nvm#manual-install
+    - Install `nvm`:
+        From <https://github.com/nvm-sh/nvm#manual-install>
 
         ```shell
         export NVM_DIR="$HOME/.nvm" && (
@@ -17,7 +17,7 @@
     > which is harmless.
 
     - Add `nvm` to `.bashrc`
-        From https://github.com/nvm-sh/nvm#git-install
+        From <https://github.com/nvm-sh/nvm#git-install>
 
         ```shell
         export NVM_DIR="$HOME/.nvm"
@@ -31,11 +31,10 @@
 
     > Tip: `which nvm` will have no results, because `nvm` is a bash function.
 
-        ```shell
-        declare -F | grep nvm
-        ...lists various nvm functions...
-        ```
-
+    ```shell
+    declare -F | grep nvm
+    ...lists various nvm functions...
+    ```
 
     - Install `npm` (22 or higher), using `nvm`:
 
@@ -43,13 +42,12 @@
         nvm install 24
         ```
 
-
 2. Install `vite` using our `Makefile`
 
-        ```shell
-        make clean
-        make node_modules
-        ```
+    ```shell
+    make clean
+    make node_modules
+    ```
 
     > Tip: `make node_modules` may output a warning about `install scripts`.
     > Ignoring it doesn't seem to hurt anything, for our purposes.
