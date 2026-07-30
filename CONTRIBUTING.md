@@ -1,48 +1,52 @@
 # Local Testing / Debugging the Cookie Banner
 
-1. Install `npm` using `nvm` (to ensure `npm >= 22`)
-
-    - Install `nvm`:
-        From <https://github.com/nvm-sh/nvm#manual-install>
-
+1. Install `npm`
+    - On Windows
+        - Install `Node` from https://nodejs.org/en/download
+        - If necessary, update `npm` via PowerShell: `npm install -g npm@12.0.1`
+    - On WSL
+        - install `npm` using `nvm` (to ensure `npm >= 22`)
+        - Install `nvm`:
+            From <https://github.com/nvm-sh/nvm#manual-install>
+    
+            ```shell
+            export NVM_DIR="$HOME/.nvm" && (
+              git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+              cd "$NVM_DIR"
+              git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+            ) && \. "$NVM_DIR/nvm.sh"
+            ```
+    
+        > Tip: `git` may emit a `detached head` warning after this step
+        > which is harmless.
+    
+        - Add `nvm` to `.bashrc`
+            From <https://github.com/nvm-sh/nvm#git-install>
+    
+            ```shell
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+            [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+            ```
+    
+        > Tip: Open a new shell, or `source ~/.bashrc` to apply the `.bashrc` changes before the next step.
+    
+        - Confirm `nvm` is setup
+    
+        > Tip: `which nvm` will have no results, because `nvm` is a bash function.
+    
         ```shell
-        export NVM_DIR="$HOME/.nvm" && (
-          git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-          cd "$NVM_DIR"
-          git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-        ) && \. "$NVM_DIR/nvm.sh"
+        declare -F | grep nvm
+        ...lists various nvm functions...
         ```
+    
+        - Install `npm` (22 or higher), using `nvm`:
+    
+            ```shell
+            nvm install 24
+            ```
 
-    > Tip: `git` may emit a `detached head` warning after this step
-    > which is harmless.
-
-    - Add `nvm` to `.bashrc`
-        From <https://github.com/nvm-sh/nvm#git-install>
-
-        ```shell
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-        ```
-
-    > Tip: Open a new shell, or `source ~/.bashrc` to apply the `.bashrc` changes before the next step.
-
-    - Confirm `nvm` is setup
-
-    > Tip: `which nvm` will have no results, because `nvm` is a bash function.
-
-    ```shell
-    declare -F | grep nvm
-    ...lists various nvm functions...
-    ```
-
-    - Install `npm` (22 or higher), using `nvm`:
-
-        ```shell
-        nvm install 24
-        ```
-
-2. Install `vite` using our `Makefile`
+1. Install `vite` using our `Makefile`
 
     ```shell
     make clean
@@ -62,7 +66,7 @@
 
     > Tip: `which vite` will have no results.
 
-3. Run a mini local webserver.
+2. Run a mini local webserver.
 
     Modern browsers tend not to allow dynamic loading of page elements from local files, so a mini web server is needed when working on the cookie banner.
 
