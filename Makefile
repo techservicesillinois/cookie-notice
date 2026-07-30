@@ -18,4 +18,4 @@ kill:
 
 clean: kill
 	-rm -f .server.logs
-	-rm -f node_modules
+	-rm -rf node_modules
