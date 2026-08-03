@@ -1,7 +1,10 @@
 .PHONY: server
 
+node_modules: package.json
+	npm install
+
 server: .server
-.server:
+.server: node_modules
 	bin/server &
 
 logs:
@@ -15,3 +18,4 @@ kill:
 
 clean: kill
 	-rm -f .server.logs
+	-rm -rf node_modules
