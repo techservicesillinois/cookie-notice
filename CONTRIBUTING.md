@@ -1,6 +1,9 @@
 # Local Testing / Debugging the Cookie Banner
 
 1. Install `npm`
+    - On Mac
+        - Using `brew`, run `brew install node`
+        - If necessary, update `npm` with `brew update` and `brew upgrade`
     - On Windows
         - Install `Node` from https://nodejs.org/en/download
         - If necessary, update `npm` via PowerShell: `npm install -g npm@12.0.1`
