@@ -7,9 +7,15 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"
-  },
+       "dev": "vite",
+        "build": "tsc --noEmit && vite build --config vite.transpile.config.ts --emptyOutDir && vite build --config vite.build.config.ts --emptyOutDir",
+        "preview": "vite preview",
+        "prepack": "npm run build",
+        "test:axe": "playwright test",
+        "test:axe:github": "playwright test --config playwright.ci.config.ts",
+        "test": "vitest run --browser.headless",
+        "test:browser": "vitest browser --browser chromium"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/techservicesillinois/cookie-notice.git"

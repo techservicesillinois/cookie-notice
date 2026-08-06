@@ -36,3 +36,8 @@ node_modules/
 
 # Vite
 .vite/
+
+# axe
+test-results/*
+playwright-report/*
+

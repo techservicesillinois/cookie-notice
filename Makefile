@@ -2,6 +2,7 @@
 
 node_modules: package.json
 	npm install
+	npx playwright install
 
 server: .server
 .server: node_modules
@@ -19,3 +20,7 @@ kill:
 clean: kill
 	-rm -f .server.logs
 	-rm -rf node_modules
+	-rm -rf playwright-report
+
+playwright-report: node_modules
+	npm run test:axe
