@@ -21,6 +21,7 @@ clean: kill
 	-rm -f .server.logs
 	-rm -rf node_modules
 	-rm -rf playwright-report
+	-rm -rf dist
 
 playwright-report: node_modules
 	npm run test:axe

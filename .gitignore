@@ -40,4 +40,5 @@ node_modules/
 # axe
 test-results/*
 playwright-report/*
+dist/*
 
