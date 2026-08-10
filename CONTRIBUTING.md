@@ -2,11 +2,15 @@
 
 After running setup commands below, these following commands can be used to run the automated test suite.
 
+For automated testing:
+
 ```
 make clean
 make test
 make playwright-report
 ```
+
+For manual testing - `make server` or `npm run dev`.
 
 ## Setup for Local Testing / Debugging the Cookie Banner
 
