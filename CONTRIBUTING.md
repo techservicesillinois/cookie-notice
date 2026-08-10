@@ -1,4 +1,14 @@
-# Local Testing / Debugging the Cookie Banner
+## Test Commands
+
+After running setup commands below, these following commands can be used to run the automated test suite.
+
+```
+make clean
+make test
+make playwright-report
+```
+
+## Setup for Local Testing / Debugging the Cookie Banner
 
 1. Install `npm`
     - On Mac
@@ -7,6 +17,10 @@
     - On Windows
         - Install `Node` from https://nodejs.org/en/download
         - If necessary, update `npm` via PowerShell: `npm install -g npm@12.0.1`
+        - Recommended: Install [GNU Make](https://gnuwin32.sourceforge.net/packages/make.htm) in order to use the `Makefile` 
+
+            > Without `make`, Windows users may need to copy/paste commands out of `Makefile` for testing.
+
     - On WSL or Linux
         - Install `npm` using `nvm` (to ensure `npm >= 22`)
         - Install `nvm`:
@@ -69,6 +83,7 @@
 
     > Tip: `which vite` will have no results.
 
+
 2. Run a mini local webserver.
 
     Modern browsers tend not to allow dynamic loading of page elements from local files, so a mini web server is needed when working on the cookie banner.
@@ -88,3 +103,10 @@
     ```shell
     make kill
     ```
+
+3. Install browser engines for automated accessibility testing.
+
+    ```
+    npx playwright install
+    ```
+
