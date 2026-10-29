@@ -24,7 +24,7 @@
 | Analytics | Analytics Partner (Google, Meta, etc.) |
 | User | Page Visitor |
 | CDN Admin | Admin of the Shared Content Delivery Network |
-| Site Admin | Admin of a website that uses the cookie notice banner |
+| Site Admin | Admin of a website that uses the Cookie Notice banner |
 
 ## Entry Points
 
