@@ -1,3 +1,19 @@
+## Scope
+
+What was considered for this model?
+
+## Risks
+
+Known risks.
+
+## Mitigations
+
+Implemented Mitigations
+
+## Assessment
+
+How satisfied is the team with this threat model?
+
 ## External Dependencies
 
 ### Required Dependencies
