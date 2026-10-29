@@ -1,29 +1,19 @@
-## Scope
+#  Campus Cookie Notice Threat Model
 
-What was considered for this model?
+## About
 
-## Risks
+This a threat analysis for the University of Illinois campus cookie
+notice. It is client side code. It runs on potentially every site
+on campus. The cookie notice by design interacts with analytic
+solutions to allow them to run when permitted by the end user.
 
-Known risks.
+### Scope
 
-## Mitigations
+This document does not cover specifics for each installation. This
+document does not include detailed analysis of each analytic engine
+that could possible be used in a specific installation.
 
-Implemented Mitigations
-
-## Assessment
-
-How satisfied is the team with this threat model?
-
-## External Dependencies
-
-### Required Dependencies
-* Illinois Web Toolkit slide-over component
-
-### Optional Dependencies
-* Shared Content Delivery Network (CDN)
-* Illinois Web Theme
-
-## Stride Threat List
+## Risks & Mitigations
 
 | Risk | Threat | Mitigations |
 |------|--------|-------------|
@@ -31,9 +21,31 @@ How satisfied is the team with this threat model?
 | | | Configuration support by securitysupport@illinois.edu
 | Malicious script injection | Dynamic Name (DNS) spoofing | Support script checksum validation |
 | | | Support Cross Origin Resource Sharing (CORS) |
-| | | Discurage use of dynamically loading from the CDN |
+| | | Discourage use of dynamically loading from the CDN |
 
-## Trust Level
+## Assessment
+
+Our support for CORS headers could be stronger. We should discourage
+the use of dynamic loading. We hope most implementers will use the
+campus toolkit, and benefit from good defaults.
+
+We should provide convenient support to allow browsers to perform
+checksum verification. See [issue 64][64].
+
+64: (https://github.com/techservicesillinois/cookie-notice/issues/64
+
+## Appendices
+
+### Dependencies
+
+#### Required Dependencies
+* Illinois Web Toolkit slide-over component
+
+#### Optional Dependencies
+* Shared Content Delivery Network (CDN)
+* Illinois Web Theme
+
+### Trust Level
 
 | Name | Description |
 |------|-------------|
@@ -42,14 +54,14 @@ How satisfied is the team with this threat model?
 | CDN Admin | Admin of the Shared Content Delivery Network |
 | Site Admin | Admin of a website that uses the Cookie Notice banner |
 
-## Entry Points
+### Entry Points
 
 |Name|Description|Trust Level|
 |----|-----------|-----------|
 | Shared Content Delivery Network (CDN)| To simplify hosting on campus, components of this solution may be dynamically loaded from this shared endpoint. | CDN Admin |
-| Analytics | Web Traffic Analytics scripts may share details of vistors' behavior to 3rd parties | Site Admin, User, Analytics |
+| Analytics | Web Traffic Analytics scripts may share details of a visitor's' behavior to 3rd parties | Site Admin, User, Analytics |
 
-## Data Sources
+### Data Sources
 
 |Data Store|Data Type|Sensitivity|Notes|
 |----------|---------|-----------|-----|
@@ -57,7 +69,7 @@ How satisfied is the team with this threat model?
 | Local Browser Storage | Cookie | Internal | When a user clicks "Accept All", a cookie is set to remember their decision for six months and allow analytics to run. |
 | Third-Party Analytics | Tracking | Internal | When a user clicks "Accept All", websites may track user behavior through third-party providers. |
 
-## Endpoint Connections
+### Endpoint Connections
 
 |Endpoint|Purpose|Stage|Access|
 |--------|-------|-----|------|
