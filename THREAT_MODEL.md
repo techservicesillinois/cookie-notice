@@ -30,9 +30,7 @@ the use of dynamic loading. We hope most implementers will use the
 campus toolkit, and benefit from good defaults.
 
 We should provide convenient support to allow browsers to perform
-checksum verification. See [issue 64][64].
-
-64: https://github.com/techservicesillinois/cookie-notice/issues/64
+checksum verification. See [Cookie notice issue 64](https://github.com/techservicesillinois/cookie-notice/issues/64).
 
 ## Appendices
 
